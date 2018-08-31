@@ -75,9 +75,9 @@ namespace Business.Rule
                 throw new DomainException(Messages.NotExistsRestaurant);
         }
 
-        public List<RestauranteGridDto> Grid()
+        public List<RestauranteGridDto> Grid(string nome)
         {
-            var query = _uow.RestauranteRepository.GetAll();
+            var query = _uow.RestauranteRepository.GetAll().Where(x => x.Nome.Contains(nome));
             return query.Select(x => new RestauranteGridDto
             {
                 Id = x.Id,

@@ -67,11 +67,11 @@ namespace Interface.Controllers
         
         [HttpGet("grid")]
         [EnableCors("AllowAll")]
-        public IActionResult Grid()
+        public IActionResult Grid([FromQuery] string nome)
         {
             try
             {
-                return Ok(JsonConvert.SerializeObject(_business.Grid()));
+                return Ok(JsonConvert.SerializeObject(_business.Grid(nome)));
             }
             catch (DomainException e)
             {
