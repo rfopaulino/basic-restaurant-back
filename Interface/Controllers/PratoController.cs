@@ -2,6 +2,7 @@
 using Business.Rule;
 using Common;
 using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,6 +23,7 @@ namespace Interface.Controllers
         }
         
         [HttpGet("{id}")]
+        [EnableCors("AllowAll")]
         public IActionResult GetById(int id)
         {
             try
@@ -35,6 +37,7 @@ namespace Interface.Controllers
         }
         
         [HttpPost]
+        [EnableCors("AllowAll")]
         public IActionResult Post([FromBody] PratoPostDto dto)
         {
             try
@@ -48,6 +51,7 @@ namespace Interface.Controllers
         }
         
         [HttpPut("{id}")]
+        [EnableCors("AllowAll")]
         public IActionResult Put(int id, [FromBody] PratoPutDto dto)
         {
             try
@@ -62,6 +66,7 @@ namespace Interface.Controllers
         }
         
         [HttpGet("grid")]
+        [EnableCors("AllowAll")]
         public IActionResult Grid(string id)
         {
             try
@@ -75,6 +80,7 @@ namespace Interface.Controllers
         }
         
         [HttpPost("massdelete")]
+        [EnableCors("AllowAll")]
         public IActionResult MassDelete([FromBody] List<int> ids)
         {
             try

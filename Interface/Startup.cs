@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading;
-using Infrastructure;
 using Infrastructure.UnitOfWork;
 using Interface.Ninject;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ninject;
@@ -44,6 +42,7 @@ namespace Interface
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             ConfigureNinject(services);
             services.AddMvc();
         }

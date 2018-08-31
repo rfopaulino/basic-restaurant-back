@@ -2,6 +2,7 @@
 using Business.Rule;
 using Common;
 using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -20,8 +21,9 @@ namespace Interface.Controllers
             _uow = uow;
             _business = new RestauranteBusiness(uow);
         }
-        
+
         [HttpGet("{id}")]
+        [EnableCors("AllowAll")]
         public IActionResult GetById(int id)
         {
             try
@@ -35,6 +37,7 @@ namespace Interface.Controllers
         }
         
         [HttpPost]
+        [EnableCors("AllowAll")]
         public IActionResult Post([FromBody] RestaurantePostDto dto)
         {
             try
@@ -48,6 +51,7 @@ namespace Interface.Controllers
         }
         
         [HttpPut("{id}")]
+        [EnableCors("AllowAll")]
         public IActionResult Put(int id, [FromBody] RestaurantePutDto dto)
         {
             try
@@ -62,7 +66,8 @@ namespace Interface.Controllers
         }
         
         [HttpGet("grid")]
-        public IActionResult Grid(string id)
+        [EnableCors("AllowAll")]
+        public IActionResult Grid()
         {
             try
             {
@@ -73,8 +78,9 @@ namespace Interface.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
-        
+
         [HttpPost("massdelete")]
+        [EnableCors("AllowAll")]
         public IActionResult MassDelete([FromBody] List<int> ids)
         {
             try

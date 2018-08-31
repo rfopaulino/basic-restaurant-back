@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string NomeRestaurante { get; set; }
         public string NomePrato { get; set; }
+        public decimal Preco { get; set; }
     }
 }

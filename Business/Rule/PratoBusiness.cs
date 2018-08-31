@@ -88,7 +88,8 @@ namespace Business.Rule
             {
                 Id = x.Id,
                 NomeRestaurante = x.Restaurante.Nome.Trim(),
-                NomePrato = x.NomePrato.Trim()
+                NomePrato = x.NomePrato.Trim(),
+                Preco = x.Preco
             }).ToList();
         }
 
