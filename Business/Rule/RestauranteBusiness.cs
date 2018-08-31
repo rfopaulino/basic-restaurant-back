@@ -93,5 +93,15 @@ namespace Business.Rule
             var restaurantes = _uow.RestauranteRepository.GetByIds(ids);
             MassDelete(restaurantes);
         }
+
+        public List<RestauranteGetIdDto> GetAll()
+        {
+            return _uow.RestauranteRepository.GetAll()
+                .Select(x => new RestauranteGetIdDto
+                {
+                    Id = x.Id,
+                    Nome = x.Nome
+                }).ToList();
+        }
     }
 }

@@ -22,6 +22,20 @@ namespace Interface.Controllers
             _business = new RestauranteBusiness(uow);
         }
 
+        [HttpGet("all")]
+        [EnableCors("AllowAll")]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                return Ok(JsonConvert.SerializeObject(_business.GetAll()));
+            }
+            catch (DomainException e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         [EnableCors("AllowAll")]
         public IActionResult GetById(int id)
@@ -57,7 +71,7 @@ namespace Interface.Controllers
             try
             {
                 _business.Update(id, dto);
-                return Ok();
+                return Ok(true);
             }
             catch (DomainException e)
             {

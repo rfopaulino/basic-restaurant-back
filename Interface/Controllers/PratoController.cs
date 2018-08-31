@@ -57,7 +57,7 @@ namespace Interface.Controllers
             try
             {
                 _business.Update(id, dto);
-                return Ok();
+                return Ok(true);
             }
             catch (DomainException e)
             {
